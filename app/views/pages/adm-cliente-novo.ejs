@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Novo Cliente</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -18,14 +18,24 @@
     <div class="container body-content">
         <h2>Novo cliente</h2>
 
-        <form action="" method="post">
+        <!-- BLOCO ADICIONADO: Exibe os erros do express-validator caso existam -->
+        <% if (typeof erros !== 'undefined') { %>
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    <% erros.forEach(function(erro) { %>
+                        <li><%= erro.msg %></li>
+                    <% }); %>
+                </ul>
+            </div>
+        <% } %>
 
+        <!-- ALTERADO: action preenchido para mandar para a rota POST -->
+        <form action="/adm-cliente-novo" method="post">
               <%- include("../partials/form-cliente") -%>
         </form>
 
         <div>
             <a class="btn btn-primary btn-lg" href="/adm/adm-cliente" role="button">voltar</a>
-
         </div>
 
         <hr />
